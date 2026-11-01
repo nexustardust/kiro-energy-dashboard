@@ -72,17 +72,17 @@ body {
 .summary-section {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
+  gap: 1.75rem;  /* 原本 --spacing-md (1.25rem)，加大為 1.75rem */
 }
 
 .card {
   background-color: var(--color-card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: 1.5rem var(--spacing-lg);  /* 上下內距從 1.25rem 加大為 1.5rem */
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.6rem;  /* 標題與數值之間的間距略加大 */
   transition: box-shadow 0.2s ease;
 }
 
@@ -91,11 +91,14 @@ body {
 }
 
 .card-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--color-text-muted);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.07em;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.2rem;
 }
 
 .card-value {
@@ -186,7 +189,7 @@ body {
   display: block;
   width: 100%;
   height: auto;
-  min-height: 160px;
+  aspect-ratio: 800 / 300; /* 對應 viewBox="0 0 800 300"，確保高度正確撐開 */
 }
 
 /* ── 8. 設備狀態區 ────────────────────────────────── */
@@ -256,12 +259,20 @@ body {
 /* 狀態：異常 */
 .status-anomaly {
   border-left-color: var(--color-anomaly);
+  border-left-width: 6px;           /* 加粗左側色條，從 4px 改為 6px */
   background-color: var(--color-anomaly-bg);
+  box-shadow: 0 0 0 1px rgba(231, 76, 60, 0.2);  /* 加上淡紅外框強調 */
+}
+
+.status-anomaly .device-name {
+  color: var(--color-anomaly);       /* 異常設備名稱改為紅色，更搶眼 */
+  font-weight: 600;
 }
 
 .status-anomaly .device-status {
   background-color: var(--color-anomaly);
   color: #ffffff;
+  box-shadow: 0 1px 4px rgba(231, 76, 60, 0.4);  /* 狀態徽章加陰影突出 */
 }
 
 /* 狀態：離線 */
