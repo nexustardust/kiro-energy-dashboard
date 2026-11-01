@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智慧能源管理儀表板</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 頁首 -->
+  <header class="site-header">
+    <h1>智慧能源管理儀表板</h1>
+  </header>
+
+  <main class="main-content">
+
+    <!-- 摘要卡片區：今日用電、本月用電、今日碳排放、本月碳排放 -->
+    <section class="summary-section" aria-label="用電與碳排放摘要">
+
+      <div class="card" id="card-today-kwh">
+        <p class="card-label">今日用電</p>
+        <p class="card-value">
+          <span class="card-number">--</span>
+          <span class="card-unit">kWh</span>
+        </p>
+      </div>
+
+      <div class="card" id="card-month-kwh">
+        <p class="card-label">本月用電</p>
+        <p class="card-value">
+          <span class="card-number">--</span>
+          <span class="card-unit">kWh</span>
+        </p>
+      </div>
+
+      <div class="card" id="card-today-co2">
+        <p class="card-label">今日碳排放</p>
+        <p class="card-value">
+          <span class="card-number">--</span>
+          <span class="card-unit">kg CO₂</span>
+        </p>
+      </div>
+
+      <div class="card" id="card-month-co2">
+        <p class="card-label">本月碳排放</p>
+        <p class="card-value">
+          <span class="card-number">--</span>
+          <span class="card-unit">kg CO₂</span>
+        </p>
+      </div>
+
+    </section>
+
+    <!-- 能源使用趨勢圖區 -->
+    <section class="chart-section" aria-label="能源使用趨勢">
+      <div class="section-header">
+        <h2>能源使用趨勢</h2>
+        <div class="chart-controls" role="group" aria-label="時間粒度切換">
+          <button id="btn-hourly" class="btn-toggle active" type="button">每小時</button>
+          <button id="btn-daily" class="btn-toggle" type="button">每日</button>
+        </div>
+      </div>
+      <svg
+        id="trend-chart"
+        viewBox="0 0 800 300"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-label="能源使用折線趨勢圖"
+      >
+        <!-- 趨勢圖由 app.js 動態注入 -->
+      </svg>
+    </section>
+
+    <!-- 設備狀態與異常提醒區 -->
+    <section class="device-section" aria-label="設備狀態與異常提醒">
+      <div class="section-header">
+        <h2>設備狀態
+          <span id="anomaly-count" class="badge-anomaly"></span>
+        </h2>
+      </div>
+      <ul class="device-list" id="device-list" aria-live="polite">
+        <!-- 設備列表由 app.js 動態注入 -->
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

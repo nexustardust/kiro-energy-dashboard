@@ -1,0 +1,364 @@
+/* =====================================================
+   智慧能源管理儀表板 — 樣式表
+   檔案：docs/styles.css
+   ===================================================== */
+
+/* ── 1. CSS 變數（色票與間距） ────────────────────── */
+:root {
+  --color-primary:     #4a90d9;
+  --color-primary-dark:#2f6eb5;
+  --color-anomaly:     #e74c3c;
+  --color-anomaly-bg:  #fdecea;
+  --color-offline:     #95a5a6;
+  --color-offline-bg:  #f4f6f6;
+  --color-normal:      #27ae60;
+  --color-normal-bg:   #eafaf1;
+  --color-bg:          #f0f2f5;
+  --color-card-bg:     #ffffff;
+  --color-header-bg:   #1a2c42;
+  --color-text:        #2c3e50;
+  --color-text-muted:  #7f8c8d;
+  --color-border:      #dde1e7;
+
+  --radius:     8px;
+  --shadow:     0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.13);
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1.25rem;
+  --spacing-lg: 2rem;
+}
+
+/* ── 2. 全域基礎重置 ──────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── 3. 頁首 ─────────────────────────────────────── */
+.site-header {
+  background-color: var(--color-header-bg);
+  color: #ffffff;
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  align-items: center;
+}
+
+.site-header h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* ── 4. 主要內容容器 ──────────────────────────────── */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* ── 5. 摘要卡片區 ────────────────────────────────── */
+.summary-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.card-label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.card-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.card-unit {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* 資料未提供狀態 */
+.card-number.no-data {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+/* ── 6. 區塊通用標題列 ────────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.section-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* ── 7. 趨勢圖區 ─────────────────────────────────── */
+.chart-section {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+/* 切換按鈕群組 */
+.chart-controls {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.btn-toggle {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-card-bg);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-toggle:hover {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.btn-toggle.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* SVG 趨勢圖自適應寬度 */
+#trend-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 160px;
+}
+
+/* ── 8. 設備狀態區 ────────────────────────────────── */
+.device-section {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+/* 異常計數徽章 */
+.badge-anomaly {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background-color: var(--color-anomaly-bg);
+  color: var(--color-anomaly);
+}
+
+.badge-anomaly.all-normal {
+  background-color: var(--color-normal-bg);
+  color: var(--color-normal);
+}
+
+/* 設備列表 */
+.device-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.device-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: 0.7rem var(--spacing-md);
+  border-radius: var(--radius);
+  border-left: 4px solid transparent;
+  background-color: var(--color-bg);
+  font-size: 0.95rem;
+}
+
+.device-name {
+  font-weight: 500;
+}
+
+.device-kwh {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  min-width: 80px;
+  text-align: right;
+}
+
+.device-status {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: 44px;
+  text-align: center;
+}
+
+/* 狀態：異常 */
+.status-anomaly {
+  border-left-color: var(--color-anomaly);
+  background-color: var(--color-anomaly-bg);
+}
+
+.status-anomaly .device-status {
+  background-color: var(--color-anomaly);
+  color: #ffffff;
+}
+
+/* 狀態：離線 */
+.status-offline {
+  border-left-color: var(--color-offline);
+  background-color: var(--color-offline-bg);
+}
+
+.status-offline .device-status {
+  background-color: var(--color-offline);
+  color: #ffffff;
+}
+
+.status-offline .device-name,
+.status-offline .device-kwh {
+  color: var(--color-offline);
+}
+
+/* 狀態：正常 */
+.status-normal {
+  border-left-color: var(--color-normal);
+}
+
+.status-normal .device-status {
+  background-color: var(--color-normal-bg);
+  color: var(--color-normal);
+}
+
+/* 全部正常提示列 */
+.all-normal-hint {
+  padding: 0.7rem var(--spacing-md);
+  border-radius: var(--radius);
+  background-color: var(--color-normal-bg);
+  color: var(--color-normal);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ── 9. 響應式設計（RWD） ─────────────────────────── */
+
+/* 平板：1024px 以下，卡片改為 2 欄 */
+@media (max-width: 1024px) {
+  .summary-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 手機：768px 以下 */
+@media (max-width: 768px) {
+  .main-content {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .site-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .site-header h1 {
+    font-size: 1.15rem;
+  }
+
+  /* 卡片維持 2 欄，縮減間距 */
+  .summary-section {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .card {
+    padding: var(--spacing-sm);
+  }
+
+  .card-number {
+    font-size: 1.5rem;
+  }
+
+  /* 趨勢圖與設備區縮減內距 */
+  .chart-section,
+  .device-section {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  /* 設備列表縮為兩欄（名稱 + 狀態） */
+  .device-item {
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-sm);
+  }
+
+  .device-kwh {
+    display: none;  /* 手機版隱藏用電量欄，保留名稱與狀態 */
+  }
+}
+
+/* 小型手機：480px 以下，卡片改為單欄 */
+@media (max-width: 480px) {
+  .summary-section {
+    grid-template-columns: 1fr;
+  }
+}
